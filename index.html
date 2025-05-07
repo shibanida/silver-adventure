@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>トップページ</title>
-    <style>
-      body { text-align: center; font-family: sans-serif; margin-top: 100px; }
-      a { font-size: 20px; color: blue; text-decoration: none; margin: 20px; }
-    </style>
+    <meta charset="UTF-8">
+    <title>ナリのToDoリスト</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+      function addTask() {
+        const taskInput = document.getElementById("taskInput");
+        const taskList = document.getElementById("taskList");
+
+        if (taskInput.value.trim() !== "") {
+          const li = document.createElement("li");
+
+          // タスク内容
+          const taskText = document.createTextNode(taskInput.value);
+          li.appendChild(taskText);
+
+          // 削除ボタン作成
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "✖️";
+          deleteBtn.style.marginLeft = "10px";
+          deleteBtn.onclick = function () {
+            li.remove();
+          };
+
+          li.appendChild(deleteBtn);
+          taskList.appendChild(li);
+          taskInput.value = "";
+        }
+      }
+    </script>
   </head>
   <body>
-    <h1>ようこそナリタのサイトへ！</h1>
-    <p>ここはトップページやでナリ</p>
-    <a href="about.html">▶ 自己紹介ページへ移動ナリ</a>
+    <h1>ナリのやることリスト</h1>
+    <input type="text" id="taskInput" placeholder="やること書くナリ">
+    <button onclick="addTask()">追加するナリ！</button>
+
+    <ul id="taskList"></ul>
   </body>
 </html>
+
+
